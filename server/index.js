@@ -36,12 +36,10 @@ app.use((err, req, res, next) => {
     status = 422;
     message = 'File is too large (maximum 10 MB)';
   }
-  if (status >= 500) {
+    if (status >= 500 && !err.expose) {
     console.error(err);
     message = 'Something went wrong. Please try again.';
   }
-  res.status(status).json({ error: message });
-});
 
 async function seedAdmin() {
   const { ADMIN_EMAIL, ADMIN_PASSWORD } = process.env;

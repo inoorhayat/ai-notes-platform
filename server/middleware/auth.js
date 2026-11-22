@@ -1,7 +1,8 @@
 import jwt from 'jsonwebtoken';
 import { User } from '../models.js';
 
-export const httpError = (status, message) => Object.assign(new Error(message), { status });
+export const httpError = (status, message) => Object.assign(new Error(message), { status, expose: true });
+// export const httpError = (status, message) => Object.assign(new Error(message), { status });
 
 // Admins see everything; owners see their own notes; everyone else sees ready, public notes.
 export function canView(note, user) {
